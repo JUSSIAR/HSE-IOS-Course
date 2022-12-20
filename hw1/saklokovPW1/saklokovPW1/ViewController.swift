@@ -10,15 +10,16 @@ import UIKit
 class ViewController: UIViewController {
     var ANIMATION_DURATION = 2.0
     
+    @IBOutlet var screen: UIView!
     @IBOutlet var viewList: [UIView]!
     @IBOutlet weak var button1: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.button1.setTitle("Press me", for: .normal)
-        for view in self.viewList {
-            view.layer.cornerRadius = 10
-        }
+        
+        presetViewsBoundsRadius()
+        presetViewsSizes()
     }
 
     @IBAction func changeColorButtonPressed(_ sender: Any) {
@@ -46,6 +47,31 @@ class ViewController: UIViewController {
             blue: .random(in: 0...1),
             alpha: 1
         )
+    }
+    
+    func presetViewsBoundsRadius() {
+        for view in self.viewList {
+            view.layer.cornerRadius = 10
+        }
+    }
+    
+    func presetViewsSizes() {
+        let screenHeight = self.screen.frame.size.height
+        let screenWidth = self.screen.frame.size.width
+        
+        let idealHeight = 568.0
+        let idealWidth = 320.0
+        
+        for view in self.viewList {
+            let height = view.frame.size.height
+            let width = view.frame.size.width
+            
+            let newHeight = height / idealHeight * screenHeight
+            let newWidth = width / idealWidth * screenWidth
+            
+            view.frame.size.height = newHeight
+            view.frame.size.width = newWidth
+        }
     }
     
 }
