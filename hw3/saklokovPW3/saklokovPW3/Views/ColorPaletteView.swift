@@ -35,7 +35,7 @@ extension ColorPaletteView {
             stackView.spacing = 8
             
             self.addSubview(stackView)
-            stackView.pin(to: self, [.left: 12, .top: 12, .right: 12, .bottom: 12])
+//            stackView.pin(to: self, [.left: 12, .top: 12, .right: 12, .bottom: 12])
         }
         
         @objc

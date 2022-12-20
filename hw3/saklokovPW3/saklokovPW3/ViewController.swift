@@ -34,17 +34,18 @@ final class WelcomeViewController: UIViewController {
         incrementButton.backgroundColor = .white
         incrementButton.layer.applyShadow()
         
-        self.view.addSubview(incrementButton)
-        incrementButton.setHeight(to: 48)
-        incrementButton.pinTop(to: self.view.centerYAnchor)
-        incrementButton.pin(to: self.view, [.left: 24, .right: 24])
-        incrementButton.addTarget(self, action: #selector(incrementButtonPressed), for: .touchUpInside)
+//        self.view.addSubview(incrementButton)
+//        incrementButton.setHeight(to: 48)
+//        incrementButton.pinTop(to: self.view.centerYAnchor)
+//        incrementButton.pin(to: self.view, [.left: 24, .right: 24])
+//        incrementButton.addTarget(self, action: #selector(incrementButtonPressed), for: .touchUpInside)
      }
                                    
     private func setupValueLabel() {
         valueLabel.font = .systemFont(ofSize: 40.0, weight: .bold)
         valueLabel.textColor = .black
         valueLabel.text = "\(value)"
+        
         self.view.addSubview(valueLabel)
         
         valueLabel.pinBottom(to: incrementButton.topAnchor, 16)
@@ -58,15 +59,16 @@ final class WelcomeViewController: UIViewController {
         colorPaletteView.isHidden = true
         
         setupIncrementButton()
-        setupValueLabel()
         setupMenuButtons()
         setupColorControlSV()
+        setupValueLabel()
     }
     
     private func setupCommentView() -> UIView {
         let commentView = UIView()
         commentView.backgroundColor = .white
         commentView.layer.cornerRadius = 12
+        
         self.view.addSubview(commentView)
         
         commentView.pinTop(to: self.view.safeAreaLayoutGuide.topAnchor)
@@ -115,16 +117,16 @@ final class WelcomeViewController: UIViewController {
     }
     
     private func setupColorControlSV() {
-        colorPaletteView.isHidden = true
+        self.colorPaletteView.isHidden = true
         self.view.addSubview(colorPaletteView)
-        colorPaletteView.translatesAutoresizingMaskIntoConstraints = false
+        self.colorPaletteView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            colorPaletteView.topAnchor.constraint(equalTo: incrementButton.bottomAnchor, constant: 8),
-            colorPaletteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-            colorPaletteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
-            colorPaletteView.bottomAnchor.constraint(equalTo: buttonsSV.topAnchor, constant: -8)
+            self.colorPaletteView.topAnchor.constraint(equalTo: incrementButton.bottomAnchor, constant: 8),
+            self.colorPaletteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            self.colorPaletteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            self.colorPaletteView.bottomAnchor.constraint(equalTo: buttonsSV.topAnchor, constant: -8)
         ])
-        colorPaletteView.addTarget(self, action: #selector(changeColor(_:)), for: .touchDragInside)
+        self.colorPaletteView.addTarget(self, action: #selector(changeColor(_:)), for: .touchDragInside)
     }
     
     private func updateUI() {
@@ -149,7 +151,7 @@ final class WelcomeViewController: UIViewController {
 
     @objc
     private func changeColor(_ slider: ColorPaletteView) {
-        UIView.animate(withDuration: 2) {
+        UIView.animate(withDuration: 0.3) {
             self.view.backgroundColor = slider.chosenColor
         }
     }
