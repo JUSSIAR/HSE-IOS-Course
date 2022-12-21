@@ -34,11 +34,11 @@ final class WelcomeViewController: UIViewController {
         incrementButton.backgroundColor = .white
         incrementButton.layer.applyShadow()
         
-//        self.view.addSubview(incrementButton)
-//        incrementButton.setHeight(to: 48)
-//        incrementButton.pinTop(to: self.view.centerYAnchor)
-//        incrementButton.pin(to: self.view, [.left: 24, .right: 24])
-//        incrementButton.addTarget(self, action: #selector(incrementButtonPressed), for: .touchUpInside)
+        self.view.addSubview(incrementButton)
+        incrementButton.setHeight(to: 48)
+        incrementButton.pinTop(to: self.view.centerYAnchor)
+        incrementButton.pin(to: self.view, [.left: 24, .right: 24])
+        incrementButton.addTarget(self, action: #selector(incrementButtonPressed), for: .touchUpInside)
      }
                                    
     private func setupValueLabel() {
@@ -59,9 +59,9 @@ final class WelcomeViewController: UIViewController {
         colorPaletteView.isHidden = true
         
         setupIncrementButton()
+        setupValueLabel()
         setupMenuButtons()
         setupColorControlSV()
-        setupValueLabel()
     }
     
     private func setupCommentView() -> UIView {
@@ -117,16 +117,17 @@ final class WelcomeViewController: UIViewController {
     }
     
     private func setupColorControlSV() {
-        self.colorPaletteView.isHidden = true
+        colorPaletteView.isHidden = true
         self.view.addSubview(colorPaletteView)
-        self.colorPaletteView.translatesAutoresizingMaskIntoConstraints = false
+        
+        colorPaletteView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.colorPaletteView.topAnchor.constraint(equalTo: incrementButton.bottomAnchor, constant: 8),
-            self.colorPaletteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-            self.colorPaletteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
-            self.colorPaletteView.bottomAnchor.constraint(equalTo: buttonsSV.topAnchor, constant: -8)
+            colorPaletteView.topAnchor.constraint(equalTo: incrementButton.bottomAnchor, constant: 8),
+            colorPaletteView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            colorPaletteView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+//            colorPaletteView.bottomAnchor.constraint(equalTo: buttonsSV.topAnchor, constant: -8)
         ])
-        self.colorPaletteView.addTarget(self, action: #selector(changeColor(_:)), for: .touchDragInside)
+        colorPaletteView.addTarget(self, action: #selector(changeColor(_:)), for: .touchDragInside)
     }
     
     private func updateUI() {
